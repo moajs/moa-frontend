@@ -26,9 +26,9 @@ npm start
 
 ## Features
 
-- 简单易用
-- 响应式
-- jade
+- 经典的 jQuery + bootstrap 简单易用
+- 响应式，兼容移动端和pc端
+- expressjs + jade 代码极简，功能强大
 - 自动挂载路由
 
 ## Contributing
