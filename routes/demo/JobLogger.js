@@ -3,8 +3,8 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('nodeManager', {
-    title: 'nodeManager'
+  res.render('demo/jobLogger', {
+    title: 'jobLogger'
   });
 });
 

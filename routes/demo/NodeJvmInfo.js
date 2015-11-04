@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('nodeJvmInfo', {
+  res.render('demo/nodeJvmInfo', {
     title: 'nodeJvmInfo'
   });
 });

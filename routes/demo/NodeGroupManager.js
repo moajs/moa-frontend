@@ -3,8 +3,8 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('executingJobQueue', {
-    title: 'executingJobQueue'
+  res.render('demo/nodeGroupManager', {
+    title: 'nodeGroupManager'
   });
 });
 
