@@ -30,6 +30,7 @@ npm start
 - 响应式，兼容移动端和pc端
 - expressjs + jade 代码极简，功能强大
 - 自动挂载路由
+- 支持log4js日志
 
 ## Contributing
 
