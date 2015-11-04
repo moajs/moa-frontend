@@ -40,7 +40,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(function (req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
-  next(err);
+  return res.redirect('/404.html');
+  // next(err);
 });
 
 // error handlers
