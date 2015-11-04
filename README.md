@@ -29,8 +29,15 @@ npm start
 - 经典的 jQuery + bootstrap 简单易用
 - 响应式，兼容移动端和pc端
 - expressjs + jade 代码极简，功能强大
-- 自动挂载路由
+- 自动挂载路由，在routes目录创建js文件会被自动识别，无需在app.js里配置
 - 支持log4js日志
+
+## Tasks
+
+- `npm start` 启动服务器
+- `gulp routes` 打印路由
+- `gulp kp` 停止服务器
+- `gulp` 跑测试，依赖`gulp watch`和`gulp mocha`
 
 ## Contributing
 
