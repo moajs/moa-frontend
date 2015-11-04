@@ -7,6 +7,7 @@
 - bootstrap
 - jquery
 
+![](doc/preview.png)
 ## 前后端分离实践
 
 - 前端：moa-frontend
