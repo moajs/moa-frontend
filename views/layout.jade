@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    title= title
+    include ./layout/head
+  body.pace-done
+    .wrapper
+      include ./layout/menu
+      div(id="page-wrapper" class="gray-bg" style="min-height: 761px;")
+        include ./layout/topbar
+        block content
+        include ./layout/footer 

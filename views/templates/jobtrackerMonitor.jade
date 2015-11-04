@@ -1,0 +1,151 @@
+.row.wrapper.border-bottom.white-bg.page-heading(xmlns='http://www.w3.org/1999/html')
+  .col-lg-12
+    h2 JobTracker&#x76D1;&#x63A7;
+    |         
+    ol.breadcrumb
+      li
+        a &#x76D1;&#x63A7;&#x62A5;&#x8B66;
+      |             
+      li.active
+        b JobTracker&#x76D1;&#x63A7;
+.wrapper.wrapper-content.animated.fadeInRight
+  .row
+    .col-lg-12
+      .ibox
+        .ibox-title
+          h3
+            span.text-navy JobTracker&#x76D1;&#x63A7;&#x6570;&#x636E;&#x67E5;&#x8BE2;
+        |                 
+        .ibox-content
+          form#form.form-horizontal(method='post', onsubmit='return false')
+            .form-group
+              label.col-sm-1.control-label &#x8282;&#x70B9;&#x6807;&#x8BC6;
+              |                             
+              .col-sm-3
+                select.form-control(name='identity')
+                  option(value='') &#x4E0D;&#x9650;
+                  |                                     #foreach($jobTrackerIdenity in $jobTrackers)
+                  |                                         
+                  option(value='${jobTrackerIdenity}') ${jobTrackerIdenity}
+                  |                                     #end
+              |                             
+              label.col-sm-1.control-label &#x65F6;&#x95F4;
+              |                             
+              .col-sm-2
+                input#startTime.form-control.datepicker(type='text', style='width:160px', name='startTime', value='$!startTime', date-format='yyyy-MM-dd HH:mm:ss', placeholder='yyyy-MM-dd HH:mm:ss')
+              |                             
+              label.control-label(style='width: 20px;float: left;') &#x5230;
+              |                             
+              .col-sm-2
+                input#endTime.form-control.datepicker(type='text', style='width:160px', name='endTime', value='$!endTime', date-format='yyyy-MM-dd HH:mm:ss', placeholder='yyyy-MM-dd HH:mm:ss')
+              |                             
+              .col-sm-2
+                button#searchBtn.btn.btn-primary(type='button')
+                  | &#x641C;&#x7D22;
+            |                         
+            .hr-line-dashed
+  |     
+  .row
+    .col-lg-12
+      .ibox
+        .ibox-title
+          h5
+            span.text-navy &#x4EFB;&#x52A1;&#x7EDF;&#x8BA1;
+            |  / 
+            span#idenityLabel.text-muted ()
+          |                     
+          .ibox-tools
+            a.collapse-link
+              i.fa.fa-chevron-up
+        |                 
+        .ibox-content
+          div
+            #highcharts(style='min-width: 310px; height: 400px; margin: 0 auto')
+script.
+  var chartConfigs = [
+  {"field": "receiveJobNum", "title": "接受的任务数"},
+  {"field": "pushJobNum", "title": "分发出去的任务数"},
+  {"field": "exeSuccessNum", "title": "执行成功个数"},
+  {"field": "exeFailedNum", "title": "执行失败个数"},
+  {"field": "exeLaterNum", "title": "延迟执行个数"},
+  {"field": "exeExceptionNum", "title": "执行异常个数"},
+  {"field": "fixExecutingJobNum", "title": "修复死任务数"}
+  ]
+  $(document).ready(function () {
+  $("#searchBtn").on("click", function () {
+  var params = {};
+  params.identity = $("select[name='identity']").val();
+  var startTime = $("input[name='startTime']").val();
+  var endTime = $("input[name='endTime']").val();
+  if (!startTime) {
+  swal("请选择开始时间", "开始时间不能为空，格式:yyyy-MM-dd HH:mm:ss", "warning");
+  return;
+  }
+  if (!LTS.ReExp.time.test(startTime)) {
+  swal("开始时间格式不正确", "格式:yyyy-MM-dd HH:mm:ss", "warning");
+  return;
+  }
+  if (!endTime) {
+  swal("请选择结束时间", "结束时间不能为空，格式:yyyy-MM-dd HH:mm:ss", "warning");
+  return;
+  }
+  if (!LTS.ReExp.time.test(endTime)) {
+  swal("结束时间格式不正确", "格式:yyyy-MM-dd HH:mm:ss", "warning");
+  return;
+  }
+  params.startTime = DateUtil.parse(startTime).getTime();
+  params.endTime = DateUtil.parse(endTime).getTime();
+  params.start = 0;
+  params.limit = 100000000;
+  params.pageIndex = 0;
+  params.field = "timestamp";
+  params.direction = "ASC";
+  params.nodeType = "JOB_TRACKER";
+  $.ajax({
+  url: 'api/monitor/monitor-data-get.do',
+  type: 'GET',
+  dataType: 'json',
+  data: params,
+  success: function (json) {
+  if (json && json.success) {
+  $("#idenityLabel").html("(" + (params.identity ? params.identity : '不限') + ")");
+  showChart(json);
+  } else {
+  json ? swal(json['msg']) : {};
+  }
+  }
+  });
+  });
+  $("#searchBtn").trigger("click");
+  function showChart(json) {
+  if (json.results == 0) {
+  $("#highcharts").html("暂无数据，请重新选择条件。");
+  return;
+  }
+  $("#highcharts").html("");
+  var seriesMap = {};
+  for (var i = 0; i < chartConfigs.length; i++) {
+  var chartConfig = chartConfigs[i];
+  seriesMap[chartConfig['field']] = {
+  //                    type: 'area',
+  name: chartConfig["title"],
+  data: []
+  };
+  }
+  var rows = json.rows;
+  for (var i = 0; i < rows.length; i++) {
+  var row = rows[i];
+  var timestamp = row['timestamp'];
+  for (var seriesKey in seriesMap) {
+  seriesMap[seriesKey]['data'].push([timestamp, row[seriesKey]]);
+  }
+  }
+  var series = [];
+  for (var seriesKey in seriesMap) {
+  series.push(seriesMap[seriesKey]);
+  }
+  var colors = ['#FCAF64', '#1bd0dc', '#f9b700', '#eb6100', '#eb6877', '#a98fc2', '#9dd30d', '#1c95bd', '#9999ff', '#5674b9', '#009944'];
+  showLineChart("#highcharts", "任务数据统计", "个数", series, colors);
+  }
+  });
+script(src='assets/js/plugins/highcharts/highcharts-4.1.8.js')

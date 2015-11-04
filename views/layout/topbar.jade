@@ -1,0 +1,22 @@
+.row.border-bottom
+  nav.navbar.navbar-static-top.grey-bg(role='navigation')
+    .navbar-header
+      a.navbar-minimalize.minimalize-styl-2.btn.btn-primary(href='#')
+        i.fa.fa-bars
+    ul.nav.navbar-top-links.navbar-right
+      li.welcome-message
+        span.m-r-sm.text-muted
+          a(href='https://github.com/moajs/admin', target='_blank')
+            span.label.label-info
+              i.fa.fa-github
+              |  github
+      li.dropdown
+        a.dropdown-toggle(data-toggle='dropdown', href='#')
+          img.img-circle(style='width:30px;', src='/assets/img/avatar.jpeg')
+          span 管理员
+        ul.dropdown-menu
+          li
+            a(href='#') 我的应用
+          li.divider
+          li
+            a(href='#') 退出

@@ -1,0 +1,189 @@
+.row.wrapper.border-bottom.white-bg.page-heading(xmlns='http://www.w3.org/1999/html')
+  .col-lg-12
+    h2 &#x4EFB;&#x52A1;&#x6DFB;&#x52A0;
+    |         
+    ol.breadcrumb
+      li
+        a &#x4EFB;&#x52A1;&#x961F;&#x5217;&#x7BA1;&#x7406;
+      |             
+      li.active
+        b &#x4EFB;&#x52A1;&#x6DFB;&#x52A0;
+.wrapper.wrapper-content.animated.fadeInRight
+  .row
+    .col-lg-12
+      .ibox
+        .ibox-title
+          h3
+            span.text-navy &#x4EFB;&#x52A1;&#x6DFB;&#x52A0;
+        |                 
+        .ibox-content
+          form#form.form-horizontal(method='post', onsubmit='return false')
+            .form-group
+              label.col-sm-2.control-label &#x4EFB;&#x52A1;ID
+              |                             
+              .col-sm-4
+                input.form-control(type='text', name='taskId', placeholder='请输入任务ID(TaskId)【必填】')
+            |                         
+            .form-group
+              label.col-sm-2.control-label &#x4EFB;&#x52A1;&#x7C7B;&#x578B;
+              |                             
+              .col-sm-2
+                select.form-control(name='jobType')
+                  option(value='REAL_TIME_JOB') &#x5B9E;&#x65F6;&#x4EFB;&#x52A1;
+                  |                                     
+                  option(value='TRIGGER_TIME_JOB') &#x5B9A;&#x65F6;&#x4EFB;&#x52A1;
+                  |                                     
+                  option(value='CRON_JOB') Cron&#x4EFB;&#x52A1;
+              |                             
+              #cronJob.col-sm-3(style='display:none;')
+                input.form-control(type='text', name='cronExpression', placeholder='请输入CronExpression')
+              |                             
+              #triggerTimeJob.col-sm-3(style='display:none;')
+                input#triggerTime.form-control.datepicker(type='text', style='width:160px', name='triggerTime', date-format='yyyy-MM-dd HH:mm:ss', placeholder='请输入触发时间')
+            |                         
+            .form-group
+              label.col-sm-2.control-label &#x53CD;&#x9988;&#x5BA2;&#x6237;&#x7AEF;
+              |                             
+              .col-sm-3
+                select.form-control(name='needFeedback')
+                  option(value='true') &#x9700;&#x8981;
+                  |                                     
+                  option(value='false', selected='') &#x4E0D;&#x9700;&#x8981;
+            |                         
+            .form-group
+              label.col-sm-2.control-label &#x4F18;&#x5148;&#x7EA7;
+              |                             
+              .col-sm-3
+                input.form-control(type='text', name='priority', value='100', placeholder='必须为数字，数值越小，优先级越大【必填】')
+            |                         
+            .form-group
+              label.col-sm-2.control-label &#x63D0;&#x4EA4;&#x8282;&#x70B9;&#x7EC4;
+              |                             
+              .col-sm-3
+                select.form-control(name='submitNodeGroup')
+                  option(value='') -- &#x8BF7;&#x9009;&#x62E9;&#x63D0;&#x4EA4;&#x8282;&#x70B9;&#x7EC4; --
+                  |                                     #foreach($nodeGroup in $jobClientNodeGroups)
+                  |                                         
+                  option(value='$nodeGroup.name') $nodeGroup.name
+                  |                                     #end
+            |                         
+            .form-group
+              label.col-sm-2.control-label &#x6267;&#x884C;&#x8282;&#x70B9;&#x7EC4;
+              |                             
+              .col-sm-3
+                select.form-control(name='taskTrackerNodeGroup')
+                  option(value='') -- &#x8BF7;&#x9009;&#x62E9;&#x6267;&#x884C;&#x8282;&#x70B9;&#x7EC4; --
+                  |                                     #foreach($nodeGroup in $taskTrackerNodeGroups)
+                  |                                         
+                  option(value='$nodeGroup.name') $nodeGroup.name
+                  |                                     #end
+            |                         
+            .form-group
+              label.col-sm-2.control-label &#x7528;&#x6237;&#x53C2;&#x6570;
+              |                             
+              .col-sm-4
+                textarea.form-control(type='text', name='extParams', placeholder='请输入用户参数 JSON格式【非必填】')
+            |                         
+            .hr-line-dashed
+            |                         
+            .form-group
+              .col-sm-1.col-sm-offset-2(style='width:70px;')
+                button#addBtn.btn.btn-primary(type='button')
+                  | &#x6DFB;&#x52A0;
+              |                             
+              .col-sm-1
+                button#resetBtn.btn.btn-warning(type='reset')
+                  | &#x91CD;&#x7F6E;
+script.
+  $(document).ready(function () {
+  $(document).on("change", "select[name='jobType']", function () {
+  var jobType = $(this).val();
+  if (jobType == 'REAL_TIME_JOB') {
+  $("#cronJob").hide();
+  $("#triggerTimeJob").hide();
+  } else if (jobType == 'TRIGGER_TIME_JOB') {
+  $("#cronJob").hide();
+  $("#triggerTimeJob").show();
+  } else if (jobType == 'CRON_JOB') {
+  $("#cronJob").show();
+  $("#triggerTimeJob").hide();
+  }
+  });
+  $(document).on("click", "#addBtn", function () {
+  var params = {};
+  $.each($('#form').parent().find(".form-control"), function () {
+  var name = $(this).attr("name");
+  var value = $(this).val();
+  params[name] = value;
+  });
+  var jobType = params['jobType'];
+  params['jobType'] = '';
+  if (jobType == 'REAL_TIME_JOB') {
+  params['cronExpression'] = '';
+  params['triggerTime'] = '';
+  } else if (jobType == 'TRIGGER_TIME_JOB') {
+  params['cronExpression'] = '';
+  var triggerTime = params['triggerTime'];
+  if (!triggerTime) {
+  sweetAlert("请输入任务触发时间", "", "error");
+  return;
+  }
+  } else if (jobType == 'CRON_JOB') {
+  var cronExpression = params['cronExpression'];
+  params['triggerTime'] = '';
+  if (!cronExpression) {
+  sweetAlert("请输入Cron表达式", "", "error");
+  return;
+  }
+  }
+  // check form
+  if (!params['taskId']) {
+  sweetAlert("请输入任务ID", "请输入任务ID(TaskId)【必填】", "error");
+  return;
+  }
+  var priority = params['priority'];
+  if (!priority) {
+  sweetAlert("请输入优先级", "必须为数字，数值越小，优先级越大【必填】", "error");
+  return;
+  }
+  if (!LTS.ReExp.number.test(priority)) {
+  sweetAlert("优先级格式错误", "必须为数字，数值越小，优先级越大【必填】", "error");
+  return;
+  }
+  if (!params['submitNodeGroup']) {
+  sweetAlert("请选择提交节点组", "如果列表中没有，请在节点组管理中添加，并启动改节点。", "error");
+  return;
+  }
+  if (!params['taskTrackerNodeGroup']) {
+  sweetAlert("请选择执行节点组", "如果列表中没有，请在节点组管理中添加，并启动改节点。", "error");
+  return;
+  }
+  var extParams = params['extParams'];
+  if (extParams) {
+  try {
+  JSON.parse(extParams)
+  } catch (e) {
+  sweetAlert("用户参数格式错误", "必须为JSON格式", "error");
+  return;
+  }
+  }
+  $.ajax({
+  url: 'api/job-queue/job-add',
+  type: 'POST',
+  dataType: 'json',
+  data: params,
+  success: function (json) {
+  if (json && json.success) {
+  swal('添加成功');
+  $("#resetBtn").trigger("click");
+  $("#cronJob").hide();
+  $("#triggerTimeJob").hide();
+  } else {
+  if (json) {
+  swal(json['msg']);
+  }
+  }
+  }
+  });
+  });
+  });

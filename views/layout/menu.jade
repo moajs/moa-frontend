@@ -1,0 +1,62 @@
+nav.navbar-default.navbar-static-side(role='navigation')
+  .sidebar-collapse
+    ul#side-menu.nav.metismenu
+      li.nav-header
+        .dropdown.profile-element
+          #current-env.env-element(env='daily') Moajs管理后台
+        .logo-element 活动商城
+      li
+        a(href='/')
+          i.fa.fa-th
+          span.nav-label 首页
+          span.label.label-info.pull-right 推荐
+      li
+        a(href='#')
+          i.fa.fa-server
+          span.nav-label 节点管理
+          span.fa.arrow
+        ul.nav.nav-second-level.collapse
+          li
+            a(href='/nodeManager') 节点管理
+          li
+            a(href='/nodeGroupManager') 节点组管理
+          li
+            a(href='/nodeJvmInfo') 节点JVM信息
+      li
+        a(href='#')
+          i.fa.fa-random
+          span.nav-label 任务队列管理
+          span.fa.arrow
+        ul.nav.nav-second-level.collapse
+          li
+            a(href='/jobAdd') 任务添加
+          li
+            a(href='/cronJobQueue') Cron任务
+          li
+            a(href='/executingJobQueue') 执行中的任务
+          li
+            a(href='/executableJobQueue') 等待执行的任务
+          li
+            a(href='/loadJob') 手动加载任务
+      li
+        a(href='#')
+          i.fa.fa-file-text-o
+          span.nav-label 日志
+          span.fa.arrow
+        ul.nav.nav-second-level.collapse
+          li
+            a(href='/jobLogger') 任务日志
+          li
+            a(href='/nodeOnOfflineLog') 节点上下线日志
+      li
+        a(href='#')
+          i.fa.fa-bar-chart
+          span.nav-label 监控报警
+          span.fa.arrow
+        ul.nav.nav-second-level.collapse
+          li
+            a(href='/jobtrackerMonitor') JobTracker监控
+          li
+            a(href='/tasktrackerMonitor') TaskTracker监控
+          li
+            a(href='h2', target='_blank') H2-Console
