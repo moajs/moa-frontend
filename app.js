@@ -1,14 +1,15 @@
+require('./init');
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var log4js        = require('log4js');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
-
-var app = express();
+var app           = express();
+var log           = log4js.getLogger("moa-api");
 
 var mount = require('mount-routes');
 
@@ -23,6 +24,10 @@ app.set('view engine', 'jade');
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
+// replace morgan with the log4js connect-logger
+log4js.configure('config/log4js.json', { reloadSecs: 300 });
+app.use(log4js.connectLogger(log4js.getLogger("http"), { level: 'auto' }));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
