@@ -7,15 +7,19 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var log4js = require('log4js');
+var mount_routes = require('mount-routes');
+var mount_simditor_qn = require('simditor-qn');
 
 var app = express();
 var log = log4js.getLogger("moa-api");
 
-var mount = require('mount-routes');
+// config
+var simditor_qn_config = require('./config/simditor_qn')
 
 // simple
 // mount(app);
-mount(app, __dirname + '/routes', false);
+mount_simditor_qn(app, simditor_qn_config);
+mount_routes(app, __dirname + '/routes', false);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

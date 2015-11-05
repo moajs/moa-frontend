@@ -28,3 +28,4 @@ build/Release
 node_modules
 config/redis.js
 config/kue.js
+config/simditor_qn.js
