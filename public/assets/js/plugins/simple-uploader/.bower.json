@@ -1,0 +1,43 @@
+{
+  "name": "simple-uploader",
+  "version": "2.0.7",
+  "homepage": "https://github.com/mycolorway/simple-uploader",
+  "authors": [
+    "farthinker <farthinker@gmail.com>"
+  ],
+  "description": "A HTML5 upload component without UI",
+  "main": "lib/uploader.js",
+  "keywords": [
+    "upload"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "spec",
+    "node_modules",
+    "vendor",
+    "Gemfile",
+    "Gemfile.lock",
+    "Gruntfile.coffee",
+    "package.json",
+    "demo.html",
+    "README.md",
+    "umd.hbs"
+  ],
+  "devDependencies": {
+    "jasmine-ajax": "2.x"
+  },
+  "dependencies": {
+    "jquery": "2.x",
+    "simple-module": "~2.0.5"
+  },
+  "_release": "2.0.7",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.0.7",
+    "commit": "e077a3a9255393ca61ce12f8e19e43d3e354d8c0"
+  },
+  "_source": "git://github.com/mycolorway/simple-uploader.git",
+  "_target": "~2.0.7",
+  "_originalSource": "simple-uploader"
+}

@@ -1,0 +1,13 @@
+doctype html
+html
+  head
+    title= title
+    include ./head
+    include ../includes/simditor_head
+  body.pace-done
+    .wrapper
+      include ./menu
+      div(id="page-wrapper" class="gray-bg" style="min-height: 761px;")
+        include ./topbar
+        include ./footer
+        block content 

@@ -1,0 +1,41 @@
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-12
+    h2 创建活动
+    |         
+    ol.breadcrumb
+      li
+        a 活动管理
+      |             
+      li.active
+        b 创建活动
+.wrapper.wrapper-content.animated.fadeInRight
+  .row
+    .col-lg-12
+      .ibox
+        .ibox-title
+          h3
+            span.text-navy Simditor Usage
+        |                 
+        .ibox-content
+          form#form.form-horizontal(method='post', onsubmit='return false')
+            .form-group.full-height-scroll
+              textare(id="editor" placeholder="Balabala" autofocus)
+            .form-group
+              .col-sm-1.col-sm-offset-3(style='width:70px;')
+                button(id="submit" type="submit" class="btn btn-primary") Submit
+              .col-sm-1.col-sm-offset-3(style='width:70px;')
+                button#editBtn.btn.btn-danger(type='button') Cancel
+
+  <!-- |
+  .row
+    .col-lg-12
+      .ibox
+        #ltstableContainer.ibox-content -->
+  
+script.
+  $(document).ready(function () {
+    
+    $('#submit').on('click', function () {
+      alert($('#editor').val());
+    });
+  });
