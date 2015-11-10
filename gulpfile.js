@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var watch = require('gulp-watch');
 var mocha = require('gulp-mocha');
 var mount = require('mount-routes');
+var run   = require('gulp-run');
 
 var source_path = ['test/**/*.js', 'lib/*.js'];
 
@@ -31,5 +32,10 @@ gulp.task('kp', function () {
   kp(3010, pre);
 });
 
+gulp.task('nginx', function () {
+  var sh = "sudo nginx -c " + __dirname + '/config/nginx.conf'
+  
+  run(sh).exec().pipe(gulp.dest('logs/nginx.log'));
+});
 
 gulp.task('default', ['mocha', 'watch']);
