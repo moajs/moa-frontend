@@ -33,11 +33,60 @@ npm start
 - 支持log4js日志
 - 内置[simditor](http://simditor.tower.im/)和七牛上传图片
 
+## Configuration
+
+### nginx
+
+- 复制config/nginx.example.conf为config/nginx.conf
+- 修改config/nginx.conf相关端口配置
+- 执行`gulp nginx`
+
+说明
+
+- 实际端口8000
+- 前端端口3010
+- api端口3005
+
+### simditor_qn
+
+- 复制config/simditor_qn.example.conf为config/simditor_qn.conf
+
+```
+module.exports = {
+  path: '/simditor/upload',
+  fileKey: 'file',
+	multer:{ 
+	 	dest: 'uploads/' 
+	},
+	qn:{
+		accessKey: 'xxx',
+		secretKey: 'yyy',
+		bucket: 'mengxiaoban',
+		origin: 'http://{bucket}.u.qiniudn.com',
+		// timeout: 3600000, // default rpc timeout: one hour, optional
+		// if your app outside of China, please set `uploadURL` to `http://up.qiniug.com/`
+		// uploadURL: 'http://up.qiniu.com/',
+	},
+	url:function(result){
+		return "http://img.mengxiaoban.cn/" + result.hash;
+	}
+}
+```
+
+说明
+
+- path 是simditor里使用的上传路径
+- fileKey 是上传后，路由里req获取的字段名称
+- multer是express里multer中间件的配置
+- qn是qn这个node模块的配置
+- url是最终图片地址，可以自己定义
+
 ## Tasks
 
 - `npm start` 启动服务器
 - `gulp routes` 打印路由
 - `gulp kp` 停止服务器
+- `gulp nginx` 启动nginx服务器
 - `gulp` 跑测试，依赖`gulp watch`和`gulp mocha`
 
 ## Contributing
