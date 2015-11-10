@@ -6,8 +6,11 @@
 - jade
 - bootstrap
 - jquery
+- gulp
+- nginx
 
 ![](doc/preview.png)
+
 ## 前后端分离实践
 
 - 前端：[moa-frontend](https://github.com/moajs/moa-frontend)
@@ -32,6 +35,7 @@ npm start
 - 自动挂载路由，在routes目录创建js文件会被自动识别，无需在app.js里配置
 - 支持log4js日志
 - 内置[simditor](http://simditor.tower.im/)和七牛上传图片
+- 使用gulp构建
 
 ## Configuration
 
