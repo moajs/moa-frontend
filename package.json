@@ -1,7 +1,7 @@
 {
-  "name": "webapp",
-  "version": "0.0.0",
-  "private": true,
+  "name": "moajs-frontend",
+  "version": "1.0.0",
+  "description": "the missing frontend framework with moajs",
   "scripts": {
     "start": "./node_modules/.bin/supervisor bin/www",
     "prestart":"node bin/open_browser.js"
@@ -18,7 +18,7 @@
     "qn": "^1.1.0",
     "serve-favicon": "~2.2.1",
     "simditor-qn": "^1.0.2",
-    "uploadify": "^1.0.2"
+    "uploadify": "^1.0.5"
   },
   "devDependencies": {
     "chai": "^3.2.0",
