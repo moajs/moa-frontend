@@ -33,6 +33,7 @@ npm start
 - 响应式，兼容移动端和pc端
 - expressjs + jade 代码极简，功能强大
 - 自动挂载路由，在routes目录创建js文件会被自动识别，无需在app.js里配置
+- 代码变动，自动重启服务器
 - 支持log4js日志
 - 内置[simditor](http://simditor.tower.im/)和七牛上传图片
 - 使用gulp构建
