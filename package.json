@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "./node_modules/.bin/supervisor bin/www"
+    "start": "./node_modules/.bin/supervisor bin/www",
+    "poststart":"node bin/open_browser.js"
   },
   "dependencies": {
     "body-parser": "~1.12.4",
