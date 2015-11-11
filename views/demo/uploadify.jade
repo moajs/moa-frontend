@@ -1,0 +1,40 @@
+extends ../layout/layout.uploadify
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  #fileuploader Upload
+    
+  script.
+    $(document).ready(function() {
+    	$("#fileuploader").uploadFile({
+    		url:"/fileupload/",
+    		fileName:"myfile",
+        multiple:true,
+        dragDrop:true,
+        showDownload:true,
+        showDelete: true,
+        onSuccess: function (files, response, xhr, pd) {
+          alert(JSON.stringify(files));
+        },
+        statusBarWidth:600,
+        dragdropWidth:600,
+        deleteCallback: function (data, pd) {
+            for (var i = 0; i < data.length; i++) {
+              alert(data);
+                $.post("delete.php", {op: "delete",name: data[i]},
+                    function (resp,textStatus, jqXHR) {
+                        //Show Message	
+                        alert("File Deleted");
+                    });
+            }
+            pd.statusbar.hide(); //You choice.
+
+        },
+        downloadCallback:function(filename,pd)
+        	{
+        		location.href="download.php?filename="+filename;
+        	}
+    	});
+    });

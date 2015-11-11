@@ -15,11 +15,16 @@ var log = log4js.getLogger("moa-api");
 
 // config
 var simditor_qn_config = require('./config/simditor_qn')
-
+var mount_uploadify = require('uploadify')
 // simple
 // mount(app);
 mount_simditor_qn(app, simditor_qn_config);
 mount_routes(app, __dirname + '/routes', false);
+mount_uploadify(app,{
+  path:'/fileupload',
+  fileKey:'myfile',
+  multer: simditor_qn_config.multer
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
