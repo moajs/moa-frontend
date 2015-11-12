@@ -9,15 +9,15 @@ var bodyParser = require('body-parser');
 var log4js = require('log4js');
 var mount_routes = require('mount-routes');
 var mount_simditor_qn = require('simditor-qn');
+var mount_uploadify = require('uploadify')
 
 var app = express();
 var log = log4js.getLogger("moa-api");
 
 // config
 var simditor_qn_config = require('./config/simditor_qn')
-var mount_uploadify = require('uploadify')
-// simple
-// mount(app);
+
+// mount 
 mount_simditor_qn(app, simditor_qn_config);
 mount_routes(app, __dirname + '/routes', false);
 mount_uploadify(app,{
