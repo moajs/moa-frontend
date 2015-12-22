@@ -19,7 +19,7 @@
     "qn": "^1.1.0",
     "serve-favicon": "~2.2.1",
     "simditor-qn": "^1.0.2",
-    "uploadify": "^1.0.5"
+    "uploadify": "^1.0.7"
   },
   "devDependencies": {
     "chai": "^3.2.0",
