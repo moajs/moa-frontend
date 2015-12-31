@@ -19,7 +19,7 @@ var simditor_qn_config = require('./config/simditor_qn')
 
 // mount 
 mount_simditor_qn(app, simditor_qn_config);
-mount_routes(app, __dirname + '/routes', false);
+
 mount_uploadify(app,{
   // qn: simditor_qn_config.qn,//是否开启上传到七牛
   path:'/fileupload',
@@ -45,6 +45,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use('/', routes);
 // app.use('/users', users);
+mount_routes(app, __dirname + '/routes', false);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
