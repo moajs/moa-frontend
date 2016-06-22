@@ -4,7 +4,7 @@
   "description": "the missing frontend framework with moajs",
   "scripts": {
     "start": "./node_modules/.bin/supervisor bin/www",
-    "prestart":"node bin/open_browser.js"
+    "prestart": "node bin/open_browser.js"
   },
   "dependencies": {
     "body-parser": "~1.12.4",
@@ -15,10 +15,11 @@
     "log4js": "^0.6.27",
     "morgan": "~1.5.3",
     "mount-routes": "^1.0.3",
+    "open": "0.0.5",
     "qn": "^1.1.0",
     "serve-favicon": "~2.2.1",
     "simditor-qn": "^1.0.2",
-    "uploadify": "^1.0.5"
+    "uploadify": "^1.0.7"
   },
   "devDependencies": {
     "chai": "^3.2.0",

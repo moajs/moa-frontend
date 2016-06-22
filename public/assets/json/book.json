@@ -1,0 +1,29 @@
+{
+  "total": 2,
+  "rows": [
+    {
+      "_id": "568facaa700988981a5a8324",
+      "bookname": "Node.js",
+      "author": "i5ting",
+      "publish": "清华大学出版社"
+    },
+    {
+      "_id": "568facaa700988981a5a8384",
+      "bookname": "JavaScript",
+      "author": "justjavac",
+      "publish": "南京大学出版社"
+    },
+    {
+      "_id": "568facaa700988981a5a8327",
+      "bookname": "Express",
+      "author": "寇云",
+      "publish": "哈尔滨工业大学出版社"
+    },
+    {
+      "_id": "568facaa700988981a5a8386",
+      "bookname": "AngularJS",
+      "author": "Bingo",
+      "publish": "中国科技大学出版社"
+    }
+  ]
+}
