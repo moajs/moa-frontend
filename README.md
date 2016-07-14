@@ -5,6 +5,7 @@
 - express
 - jade
 - bootstrap
+- bootstraptable
 - jquery
 - gulp
 - nginx

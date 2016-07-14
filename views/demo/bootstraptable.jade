@@ -1,19 +1,99 @@
-extends ../layout/layout.simditor
+extends ../layout/layout.bootstrap
 
-  
 block content
-  <!-- .full-height-scroll -->
-  table(data-toggle='table', data-url='http://mikepenz.com/jsfiddle/', data-pagination='true', data-side-pagination='server', data-page-list='[5, 10, 20, 50, 100, 200]', data-search='true', data-height='300')
-    thead
-      tr
-        th(data-field='state', data-checkbox='true')
-        |         
-        th(data-field='id', data-align='right', data-sortable='true') Item ID
-        |         
-        th(data-field='name', data-align='center', data-sortable='true') Item Name
-        |         
-        th(data-field='price', data-sortable='true') Item Price
-  
-    
+  .row
+    .col-sm-12
+      table(
+            id='tableid',
+            data-toggle='table',
+            data-smart-display ="false",
+            data-click-to-select="false",
+            data-pagination='true', 
+            data-side-pagination='server', 
+            data-page-list='[1,5, 10, 20, 50, 100, 200]', 
+            data-response-handler="responseHandler",
+            data-classes="table table-hover table-no-bordered table-condensed table-responsive ",
+            data-search='false',
+            data-show-export='true',
+            data-show-pagination-switch ="false",
+            data-show-footer = "false",
+            data-show-refresh="true"
+            data-show-toggle="true"
+            data-show-columns="true"
+            data-striped="true",
+            data-detail-view="true"
+            data-detail-formatter="detailFormatter",
+            data-minimum-count-columns="2",
+            data-height='600')
+        thead
+          tr 
+            th(data-field='state',data-radio='true')　单选
+            th(data-field='id',data-align='center',data-formatter='showSerialNum')　序号
+            th(data-field='bookname', data-align='center' ) 书名
+            th(data-field='author',  data-align='center' )  作者     
+            th(data-field='publish',  data-align='center')  出版社
+            th(data-field='purchase',  data-align='center'
+            data-formatter='purchaseFormatter' data-events='purchaseEvents')  操作
   script.
-    window.qn_token = "#{token}"
+    $(function(){
+      var $obj = $('#tableid');
+      var url = '/assets/json/book.json';
+      var params = function queryParams (params) {
+                    return {
+                      limit: params.limit,  
+                      offset: params.offset
+                    }
+                  }
+      getTables($obj,url,'get',params);
+    });
+
+    //发送请求获取数据
+    function getTables(obj,url,method,params) {
+      $(obj).bootstrapTable('destroy');
+      $(obj).bootstrapTable({
+        url:url,
+        method:method,
+        queryParams:params
+        });
+    }
+    //返回数据处理
+    function responseHandler(res){
+      return res
+    }
+    //样式的调整
+    function radioStyle(){
+      return {
+        css:{
+            'min-width' : '35px'
+          }
+        }
+    }
+    //获取表格序号
+    function showSerialNum(value, row, index){
+      return index + 1;
+    }
+
+    //事件处理
+
+    //详情显示
+    function detailFormatter(){
+    return '书本简介';
+    }
+
+    function purchaseFormatter(){
+      return [
+        '<a class="edit" href="javascript:void(0)" title="Edit">',
+        '收藏',
+        '</a>'].join('');
+    }
+
+    window.purchaseEvents = {
+      'click .edit' : function(e, value, row, index){
+        alert('已收藏！');
+      }
+    }
+    //开始时间
+    function getFormatTime (value, row, index) {
+      var time = moment(row.data).format('YYYY-MM-DD HH:mm');
+      return time
+    }

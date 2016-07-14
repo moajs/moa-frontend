@@ -10,7 +10,7 @@ router.get('/', function (req, res, next) {
   var token = client.uploadToken();
   console.log(token)
   
-  res.render('demo/bootstraptable', {
+  res.render('demo/bootstrap_table', {
     title: 'index'
   });
 });
