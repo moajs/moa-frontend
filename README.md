@@ -56,7 +56,7 @@ npm start
 
 ### simditor_qn
 
-- 复制config/simditor_qn.example.conf为config/simditor_qn.conf
+- 复制config/simditor_qn.example.js为config/simditor_qn.js
 
 ```
 module.exports = {
