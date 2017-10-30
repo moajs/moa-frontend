@@ -1,12 +1,9 @@
-extends ../layout/layout.uploadify
-
-block content
-  h1= title
-  p Welcome to #{title}
-
-  #fileuploader Upload
-    
-  script.
+{{ extend('../layout/layout.uploadify.art') }}
+{{ block  'content'}}
+  <h1>{{title}}</h1>
+  <p>Welcome to {{title}}</p>
+  <div id="fileuploader">Upload</div>
+  <script>
     $(document).ready(function() {
     	$("#fileuploader").uploadFile({
     		url:"/fileupload/",
@@ -25,12 +22,11 @@ block content
               alert(data);
                 $.post("delete.php", {op: "delete",name: data[i]},
                     function (resp,textStatus, jqXHR) {
-                        //Show Message	
+                        //Show Message
                         alert("File Deleted");
                     });
             }
             pd.statusbar.hide(); //You choice.
-
         },
         downloadCallback:function(filename,pd)
         	{
@@ -38,3 +34,8 @@ block content
         	}
     	});
     });
+  </script>
+{{ /block}}
+
+
+

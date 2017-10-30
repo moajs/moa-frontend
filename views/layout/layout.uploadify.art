@@ -1,19 +1,19 @@
-<!--layout.html-->
+<!--layout.art-->
 <!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
     <title>{{title}}</title>
-    {{include './head.html'}}
-    {{include './head.uploadify.html'}}
+    {{include './head.art'}}
+    {{include './head.uploadify.art'}}
 </head>
 <body class='pace-done'>
   <div class='wrapper'>
-    {{include './menu.html'}}
+    {{include './menu.art'}}
     <div id="page-wrapper" style="min-height: 761px;" class="gray-bg">
-    {{include './topbar.html'}}
+    {{include './topbar.art'}}
     {{block 'content'}}{{/block}}
-    {{include './footer.html'}}
+    {{include './footer.art'}}
     </div>
     </div>
 </body>
