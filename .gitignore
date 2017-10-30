@@ -32,3 +32,4 @@ config/simditor_qn.js
 config/nginx.conf
 uploads/
 package-lock.json
+.DS_Store
