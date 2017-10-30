@@ -1,10 +1,7 @@
-extends ../layout/layout.simditor
-
-  
-block content
-  <!-- .full-height-scroll -->
-  include ../includes/simditor
-
-    
-  script.
-    window.qn_token = "#{token}"
+{{ extend('../layout/layout.simditor.art') }}
+{{ block  'content'}}
+  {{include '../includes/simditor.art'}}
+  <script>
+    window.qn_token = "{{token}}"
+  </script>
+{{ /block}}
