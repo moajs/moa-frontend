@@ -30,7 +30,8 @@ mount_uploadify(app,{
 // view engine setup
 app.engine('art', require('express-art-template'))
 app.set('view options', {
-    debug: process.env.NODE_ENV !== 'production'
+    debug: process.env.NODE_ENV !== 'production',
+    extname: '.html'
 })
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'art')
