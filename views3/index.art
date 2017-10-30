@@ -1,0 +1,13 @@
+<!--
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+-->
+
+<% extend('./layout.art') %>
+<% block('content', function(){ %>
+  <h1>{{h1}}</h1>
+  <p> Welcome to {{title}} </p>
+<% }) %>

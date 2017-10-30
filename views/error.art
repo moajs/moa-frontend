@@ -1,6 +1,6 @@
-{{ extend('./layout.html') }}
-{{ block('content', function(){ }}
+<% extend('./layout.art') %>
+<% block('content', function(){ %>
   <h1>{{message}}</h1>
   <h2>{{error.status}}</h2>
   <pre> {{error.stack}} </pre>
-{{ }) }}
+<% }) %>
