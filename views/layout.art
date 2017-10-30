@@ -1,18 +1,18 @@
-<!--layout.html-->
+<!--layout.art-->
 <!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
     <title>{{title}}</title>
-    {{include './layout/head.html'}}
+    {{include './layout/head.art'}}
 </head>
 <body class='pace-done'>
   <div class='wrapper'>
-    {{include './layout/menu.html'}}
+    {{include './layout/menu.art'}}
     <div id="page-wrapper" style="min-height: 761px;" class="gray-bg">
-    {{include './layout/topbar.html'}}
+    {{include './layout/topbar.art'}}
     {{block 'content'}}{{/block}}
-    {{include './layout/footer.html'}}
+    {{include './layout/footer.art'}}
     </div>
     </div>
 </body>
