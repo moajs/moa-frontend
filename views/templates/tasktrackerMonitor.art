@@ -1,95 +1,88 @@
-.row.wrapper.border-bottom.white-bg.page-heading(xmlns='http://www.w3.org/1999/html')
-  .col-lg-12
-    h2 TaskTracker&#x76D1;&#x63A7;
-    |         
-    ol.breadcrumb
-      li
-        a &#x76D1;&#x63A7;&#x62A5;&#x8B66;
-      |             
-      li.active
-        b TaskTracker&#x76D1;&#x63A7;
-.wrapper.wrapper-content.animated.fadeInRight
-  .row
-    .col-lg-12
-      .ibox
-        .ibox-title
-          h3
-            span.text-navy TaskTracker&#x76D1;&#x63A7;&#x6570;&#x636E;&#x67E5;&#x8BE2;
-        |                 
-        .ibox-content
-          form#form.form-horizontal(method='post', onsubmit='return false')
-            .form-group
-              label.col-sm-1.control-label &#x8282;&#x70B9;&#x6807;&#x8BC6;
-              |                             
-              .col-sm-3
-                select.form-control(name='nodeGroup')
-                  option(value='') &#x4E0D;&#x9650;
-                  |                                     #foreach($nodeGroup in $taskTrackerNodeGroups)
-                  |                                         
-                  option(value='$nodeGroup.name') $nodeGroup.name
-                  |                                     #end
-              |                             
-              label.col-sm-1.control-label &#x8282;&#x70B9;&#x6807;&#x8BC6;
-              |                             
-              .col-sm-3
-                select.form-control(name='identity')
-                  option(value='') &#x4E0D;&#x9650;
-                  |                                     #foreach($ttMap in $taskTrackerMap.entrySet())
-                  |                                         
-                  option(value='$ttMap.key') ${ttMap.key}(${ttMap.value})
-                  |                                     #end
-            |                         
-            .form-group
-              label.col-sm-1.control-label &#x65F6;&#x95F4;
-              |                             
-              .col-sm-2
-                input#startTime.form-control.datepicker(type='text', style='width:160px', name='startTime', value='$!startTime', date-format='yyyy-MM-dd HH:mm:ss', placeholder='yyyy-MM-dd HH:mm:ss')
-              |                             
-              label.control-label(style='width: 20px;float: left;') &#x5230;
-              |                             
-              .col-sm-2
-                input#endTime.form-control.datepicker(type='text', style='width:160px', name='endTime', value='$!endTime', date-format='yyyy-MM-dd HH:mm:ss', placeholder='yyyy-MM-dd HH:mm:ss')
-              |                             
-              .col-sm-2
-                button#searchBtn.btn.btn-primary(type='button')
-                  | &#x641C;&#x7D22;
-            |                         
-            .hr-line-dashed
-  |     
-  .row
-    .col-lg-12
-      .ibox
-        .ibox-title
-          h5
-            span.text-navy &#x4EFB;&#x52A1;&#x7EDF;&#x8BA1;
-            |  / 
-            span#idenityLabel.text-muted ()
-          |                     
-          .ibox-tools
-            a.collapse-link
-              i.fa.fa-chevron-up
-        |                 
-        .ibox-content
-          div
-            #highcharts(style='min-width: 310px; height: 400px; margin: 0 auto')
-  |     
-  .row
-    .col-lg-12
-      .ibox
-        .ibox-title
-          h5
-            span.text-navy FailStore&#x5927;&#x5C0F;
-            |  / 
-            span.text-muted &#x5355;&#x4F4D;: KB
-          |                     
-          .ibox-tools
-            a.collapse-link
-              i.fa.fa-chevron-up
-        |                 
-        .ibox-content
-          div
-            #failStoreChart(style='min-width: 310px; height: 400px; margin: 0 auto')
-script.
+<div xmlns="http://www.w3.org/1999/html" class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-12">
+    <h2>TaskTracker&#x76D1;&#x63A7;</h2>
+    <ol class="breadcrumb">
+      <li><a>&#x76D1;&#x63A7;&#x62A5;&#x8B66;</a></li>
+      <li class="active"><b>TaskTracker&#x76D1;&#x63A7;</b></li>
+    </ol>
+  </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox">
+        <div class="ibox-title">
+          <h3><span class="text-navy">TaskTracker&#x76D1;&#x63A7;&#x6570;&#x636E;&#x67E5;&#x8BE2;</span></h3>
+        </div>
+        <div class="ibox-content">
+          <form id="form" method="post" onsubmit="return false" class="form-horizontal">
+            <div class="form-group">
+              <label class="col-sm-1 control-label">&#x8282;&#x70B9;&#x6807;&#x8BC6;</label>
+              <div class="col-sm-3">
+                <select name="nodeGroup" class="form-control">
+                  <option value="">&#x4E0D;&#x9650;</option>                                    #foreach($nodeGroup in $taskTrackerNodeGroups)
+                  <option value="$nodeGroup.name">$nodeGroup.name</option>                                    #end
+                </select>
+              </div>
+              <label class="col-sm-1 control-label">&#x8282;&#x70B9;&#x6807;&#x8BC6;</label>
+              <div class="col-sm-3">
+                <select name="identity" class="form-control">
+                  <option value="">&#x4E0D;&#x9650;</option>                                    #foreach($ttMap in $taskTrackerMap.entrySet())
+                  <option value="$ttMap.key">${ttMap.key}(${ttMap.value})</option>                                    #end
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-1 control-label">&#x65F6;&#x95F4;</label>
+              <div class="col-sm-2">
+                <input id="startTime" type="text" style="width:160px" name="startTime" value="$!startTime" date-format="yyyy-MM-dd HH:mm:ss" placeholder="yyyy-MM-dd HH:mm:ss" class="form-control datepicker"/>
+              </div>
+              <label style="width: 20px;float: left;" class="control-label">&#x5230;</label>
+              <div class="col-sm-2">
+                <input id="endTime" type="text" style="width:160px" name="endTime" value="$!endTime" date-format="yyyy-MM-dd HH:mm:ss" placeholder="yyyy-MM-dd HH:mm:ss" class="form-control datepicker"/>
+              </div>
+              <div class="col-sm-2">
+                <button id="searchBtn" type="button" class="btn btn-primary">&#x641C;&#x7D22;</button>
+              </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox">
+        <div class="ibox-title">
+          <h5><span class="text-navy">&#x4EFB;&#x52A1;&#x7EDF;&#x8BA1;</span> / <span id="idenityLabel" class="text-muted">()</span></h5>
+          <div class="ibox-tools"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></div>
+        </div>
+        <div class="ibox-content">
+          <div>
+            <div id="highcharts" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox">
+        <div class="ibox-title">
+          <h5><span class="text-navy">FailStore&#x5927;&#x5C0F;</span> / <span class="text-muted">&#x5355;&#x4F4D;: KB</span></h5>
+          <div class="ibox-tools"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></div>
+        </div>
+        <div class="ibox-content">
+          <div>
+            <div id="failStoreChart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
   var chartConfigs = [
   {"field": "exeSuccessNum", "title": "执行成功个数"},
   {"field": "exeFailedNum", "title": "执行失败个数"},
@@ -187,4 +180,5 @@ script.
   showLineChart("#failStoreChart", "FailStore空间大小", "K", series2, colors);
   }
   });
-script(src='assets/js/plugins/highcharts/highcharts-4.1.8.js')
+</script>
+<script src="assets/js/plugins/highcharts/highcharts-4.1.8.js"></script>

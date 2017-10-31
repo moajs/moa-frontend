@@ -1,4 +1,4 @@
-extends ../layout
-
-block content
-  include ../templates/nodeOnOfflineLog
+{{ extend('../layout.art') }}
+{{ block  'content'}}
+  {{include '../templates/nodeOnOfflineLog.art'}}
+{{ /block}}

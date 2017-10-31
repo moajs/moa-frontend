@@ -1,4 +1,4 @@
-extends ../layout
-
-block content
-  include ../templates/tasktrackerMonitor
+{{ extend('../layout.art') }}
+{{ block  'content'}}
+  {{include '../templates/tasktrackerMonitor.art'}}
+{{ /block}}

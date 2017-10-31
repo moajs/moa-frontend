@@ -1,75 +1,72 @@
-.row.wrapper.border-bottom.white-bg.page-heading
-  .col-lg-12
-    h2 &#x6267;&#x884C;&#x4E2D;&#x7684;&#x4EFB;&#x52A1;
-    |         
-    ol.breadcrumb
-      li
-        a &#x4EFB;&#x52A1;&#x961F;&#x5217;&#x7BA1;&#x7406;
-      |             
-      li.active
-        b &#x6267;&#x884C;&#x4E2D;&#x7684;&#x4EFB;&#x52A1;
-.wrapper.wrapper-content.animated.fadeInRight
-  .row
-    .col-lg-12
-      .ibox
-        .ibox-title
-          h3
-            span.text-navy &#x6267;&#x884C;&#x4E2D;&#x7684;&#x4EFB;&#x52A1;
-        |                 
-        .ibox-content
-          form#form.form-horizontal(method='post', onsubmit='return false')
-            .form-group
-              label.col-sm-2.control-label(style='width:10%') &#x4EFB;&#x52A1;ID
-              |                             
-              .col-sm-3
-                input.form-control(type='text', name='taskId', placeholder='请输入任务ID(TaskId)')
-              |                             
-              label.col-sm-2.control-label(style='width:10%') &#x63D0;&#x4EA4;&#x8282;&#x70B9;&#x7EC4;
-              |                             
-              .col-sm-3
-                select.form-control(name='submitNodeGroup')
-                  option(value='') -- &#x4E0D;&#x9650; --
-                  |                                     #foreach($nodeGroup in $jobClientNodeGroups)
-                  |                                         
-                  option(value='$nodeGroup.name') $nodeGroup.name
-                  |                                     #end
-            |                         
-            .form-group
-              label.col-sm-2.control-label(style='width:10%') &#x6267;&#x884C;&#x8282;&#x70B9;&#x7EC4;
-              |                             
-              .col-sm-3
-                select.form-control(name='taskTrackerNodeGroup')
-                  option(value='') -- &#x4E0D;&#x9650; --
-                  |                                     #foreach($nodeGroup in $taskTrackerNodeGroups)
-                  |                                         
-                  option(value='$nodeGroup.name') $nodeGroup.name
-                  |                                     #end
-              |                             
-              label.col-sm-2.control-label(style='width:10%') &#x53CD;&#x9988;&#x5BA2;&#x6237;&#x7AEF;
-              |                             
-              .col-sm-2
-                select.form-control(name='needFeedback')
-                  option(value='') -- &#x4E0D;&#x9650; --
-                  |                                     
-                  option(value='true') &#x9700;&#x8981;
-                  |                                     
-                  option(value='false') &#x4E0D;&#x9700;&#x8981;
-              |                             
-              .col-sm-1(style='width:70px;')
-                button#searchBtn.btn.btn-primary(type='button')
-                  | &#x641C;&#x7D22;
-              |                             
-              .col-sm-1
-                button#resetBtn.btn.btn-warning(type='reset')
-                  | &#x91CD;&#x7F6E;
-            |                         
-            .hr-line-dashed
-  |     
-  .row
-    .col-lg-12
-      .ibox
-        #ltstableContainer.ibox-content
-script#ltstable(type='text/html').
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-12">
+    <h2>&#x6267;&#x884C;&#x4E2D;&#x7684;&#x4EFB;&#x52A1;</h2>
+    <ol class="breadcrumb">
+      <li><a>&#x4EFB;&#x52A1;&#x961F;&#x5217;&#x7BA1;&#x7406;</a></li>
+      <li class="active"><b>&#x6267;&#x884C;&#x4E2D;&#x7684;&#x4EFB;&#x52A1;</b></li>
+    </ol>
+  </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox">
+        <div class="ibox-title">
+          <h3><span class="text-navy">&#x6267;&#x884C;&#x4E2D;&#x7684;&#x4EFB;&#x52A1;</span></h3>
+        </div>
+        <div class="ibox-content">
+          <form id="form" method="post" onsubmit="return false" class="form-horizontal">
+            <div class="form-group">
+              <label style="width:10%" class="col-sm-2 control-label">&#x4EFB;&#x52A1;ID</label>
+              <div class="col-sm-3">
+                <input type="text" name="taskId" placeholder="请输入任务ID(TaskId)" class="form-control"/>
+              </div>
+              <label style="width:10%" class="col-sm-2 control-label">&#x63D0;&#x4EA4;&#x8282;&#x70B9;&#x7EC4;</label>
+              <div class="col-sm-3">
+                <select name="submitNodeGroup" class="form-control">
+                  <option value="">-- &#x4E0D;&#x9650; --</option>                                    #foreach($nodeGroup in $jobClientNodeGroups)
+                  <option value="$nodeGroup.name">$nodeGroup.name</option>                                    #end
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label style="width:10%" class="col-sm-2 control-label">&#x6267;&#x884C;&#x8282;&#x70B9;&#x7EC4;</label>
+              <div class="col-sm-3">
+                <select name="taskTrackerNodeGroup" class="form-control">
+                  <option value="">-- &#x4E0D;&#x9650; --</option>                                    #foreach($nodeGroup in $taskTrackerNodeGroups)
+                  <option value="$nodeGroup.name">$nodeGroup.name</option>                                    #end
+                </select>
+              </div>
+              <label style="width:10%" class="col-sm-2 control-label">&#x53CD;&#x9988;&#x5BA2;&#x6237;&#x7AEF;</label>
+              <div class="col-sm-2">
+                <select name="needFeedback" class="form-control">
+                  <option value="">-- &#x4E0D;&#x9650; --</option>
+                  <option value="true">&#x9700;&#x8981;</option>
+                  <option value="false">&#x4E0D;&#x9700;&#x8981;</option>
+                </select>
+              </div>
+              <div style="width:70px;" class="col-sm-1">
+                <button id="searchBtn" type="button" class="btn btn-primary">&#x641C;&#x7D22;</button>
+              </div>
+              <div class="col-sm-1">
+                <button id="resetBtn" type="reset" class="btn btn-warning">&#x91CD;&#x7F6E;</button>
+              </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox">
+        <div id="ltstableContainer" class="ibox-content"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script id="ltstable" type="text/html">
   <table class="table table-stripped toggle-arrow-tiny footable" data-page-size="10">
   <thead>
   <tr>
@@ -117,7 +114,8 @@ script#ltstable(type='text/html').
   </tr>
   </tfoot>
   </table>
-script.
+</script>
+<script>
   $(document).ready(function () {
   LTS.colFormatter.optFormat = function (v, row) {
   var logUrl = "job-logger.htm?taskId=" + row.taskId + "&taskTrackerNodeGroup=" + row.taskTrackerNodeGroup;
@@ -138,3 +136,4 @@ script.
   });
   $("#searchBtn").trigger("click");
   });
+</script>

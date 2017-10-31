@@ -1,54 +1,56 @@
-.row.wrapper.border-bottom.white-bg.page-heading
-  .col-lg-12
-    h2 &#x8282;&#x70B9;&#x7EC4;&#x7BA1;&#x7406;
-    |         
-    ol.breadcrumb
-      li
-        a &#x8282;&#x70B9;&#x7BA1;&#x7406;
-      |             
-      li.active
-        b &#x8282;&#x70B9;&#x7EC4;&#x7BA1;&#x7406;
-.wrapper.wrapper-content.animated.fadeInRight
-  .row
-    .col-lg-12
-      .ibox
-        .ibox-title
-          h3
-            span.text-navy &#x8282;&#x70B9;&#x7EC4;&#x7BA1;&#x7406;
-        |                 
-        .ibox-content
-          form#form.form-horizontal(method='post', onsubmit='return false')
-            .form-group
-              label.col-sm-1.control-label &#x8282;&#x70B9;&#x7EC4;
-              |                             
-              .col-sm-2
-                input.form-control(type='text', name='nodeGroup', placeholder='请输入节点组')
-              |                             
-              label.col-sm-1.control-label &#x8282;&#x70B9;&#x7C7B;&#x578B;
-              |                             
-              .col-sm-2
-                select.form-control(name='nodeType')
-                  option(value='') &#x6240;&#x6709;
-                  |                                     
-                  option(value='JOB_CLIENT') JobClient
-                  |                                     
-                  option(value='TASK_TRACKER') TaskTracker
-              |                             
-              .col-sm-1(style='margin-left:10px;width:70px;')
-                button#searchBtn.btn.btn-primary(type='button')
-                  | &#x641C;&#x7D22;
-              |                             
-              .col-sm-1
-                button#addBtn.btn.btn-warning(type='button')
-                  | &#x6DFB;&#x52A0;
-            |                         
-            .hr-line-dashed
-  |     
-  .row
-    .col-lg-12
-      .ibox
-        #ltstableContainer.ibox-content
-script#ltstable(type='text/html').
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-12">
+    <h2>&#x8282;&#x70B9;&#x7EC4;&#x7BA1;&#x7406;</h2>
+    <ol class="breadcrumb">
+      <li><a>&#x8282;&#x70B9;&#x7BA1;&#x7406;</a></li>
+      <li class="active"><b>&#x8282;&#x70B9;&#x7EC4;&#x7BA1;&#x7406;</b></li>
+    </ol>
+  </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox">
+        <div class="ibox-title">
+          <h3><span class="text-navy">&#x8282;&#x70B9;&#x7EC4;&#x7BA1;&#x7406;</span></h3>
+        </div>
+        <div class="ibox-content">
+          <form id="form" method="post" onsubmit="return false" class="form-horizontal">
+            <div class="form-group">
+              <label class="col-sm-1 control-label">&#x8282;&#x70B9;&#x7EC4;</label>
+              <div class="col-sm-2">
+                <input type="text" name="nodeGroup" placeholder="请输入节点组" class="form-control"/>
+              </div>
+              <label class="col-sm-1 control-label">&#x8282;&#x70B9;&#x7C7B;&#x578B;</label>
+              <div class="col-sm-2">
+                <select name="nodeType" class="form-control">
+                  <option value="">&#x6240;&#x6709;</option>
+                  <option value="JOB_CLIENT">JobClient</option>
+                  <option value="TASK_TRACKER">TaskTracker</option>
+                </select>
+              </div>
+              <div style="margin-left:10px;width:70px;" class="col-sm-1">
+                <button id="searchBtn" type="button" class="btn btn-primary">&#x641C;&#x7D22;</button>
+              </div>
+              <div class="col-sm-1">
+                <button id="addBtn" type="button" class="btn btn-warning">&#x6DFB;&#x52A0;</button>
+              </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox">
+        <div id="ltstableContainer" class="ibox-content"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script id="ltstable" type="text/html">
   <table class="table table-stripped toggle-arrow-tiny footable" data-page-size="10">
   <thead>
   <tr>
@@ -82,7 +84,8 @@ script#ltstable(type='text/html').
   </tr>
   </tfoot>
   </table>
-script.
+</script>
+<script>
   $(document).ready(function () {
   LTS.colFormatter.optFormat = function (v, row) {
   return '<a href="javascript:;" class="node-group-del-btn" nodeGroup="' + row.name + '" nodeType="' + row.nodeType + '">' +
@@ -161,3 +164,4 @@ script.
   });
   $("#searchBtn").trigger("click");
   });
+</script>

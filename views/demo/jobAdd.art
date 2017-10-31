@@ -1,4 +1,4 @@
-extends ../layout
-
-block content
-  include ../templates/jobAdd
+{{ extend('../layout.art') }}
+{{ block  'content'}}
+  {{include '../templates/jobAdd.art'}}
+{{ /block}}

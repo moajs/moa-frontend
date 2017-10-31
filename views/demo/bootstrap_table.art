@@ -1,19 +1,14 @@
-extends ../layout/layout.simditor
-
-  
-block content
-  <!-- .full-height-scroll -->
-  table(data-toggle='table', data-url='http://mikepenz.com/jsfiddle/', data-pagination='true', data-side-pagination='server', data-page-list='[5, 10, 20, 50, 100, 200]', data-search='true', data-height='300')
-    thead
-      tr
-        th(data-field='state', data-checkbox='true')
-        |         
-        th(data-field='id', data-align='right', data-sortable='true') Item ID
-        |         
-        th(data-field='name', data-align='center', data-sortable='true') Item Name
-        |         
-        th(data-field='price', data-sortable='true') Item Price
-  
-    
-  script.
-    window.qn_token = "#{token}"
+{{ extend('../layout/layout.simditor.art') }}
+{{ block  'content'}}
+  <table data-toggle="table" data-url="http://mikepenz.com/jsfiddle/" data-pagination="true" data-side-pagination="server" data-page-list="[5, 10, 20, 50, 100, 200]" data-search="true" data-height="300">
+    <thead>
+      <tr>
+        <th data-field="state" data-checkbox="true"></th>
+        <th data-field="id" data-align="right" data-sortable="true">Item ID</th>
+        <th data-field="name" data-align="center" data-sortable="true">Item Name</th>
+        <th data-field="price" data-sortable="true">Item Price</th>
+      </tr>
+    </thead>
+  </table>
+  <script>window.qn_token = "{{token}}"</script>
+{{ /block}}

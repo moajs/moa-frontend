@@ -1,23 +1,24 @@
-.row.wrapper.border-bottom.white-bg.page-heading
-  .col-lg-12
-    h2 &#x8282;&#x70B9;JVM&#x4FE1;&#x606F;
-    |         
-    ol.breadcrumb
-      li
-        a &#x8282;&#x70B9;&#x7BA1;&#x7406;
-      |             
-      li.active
-        b &#x8282;&#x70B9;JVM&#x4FE1;&#x606F;
-.row.wrapper.wrapper-content.animated.fadeInRight
-  .panel-body(style='padding-top:0px;')
-    .input-group
-      input.form-control.input-lg(type='text', placeholder='请输入节点标识 (可以在节点上下线信息中或者节点管理中找到)', name='identity', value='$!identity')
-      |             
-      .input-group-btn
-        button#searchBtn.btn.btn-lg.btn-primary(type='button') &nbsp;&#x641C;&nbsp;&nbsp;&#x7D22;&nbsp;
-  |     
-  #jvmInfo.col-lg-12
-script#jvm-info-template(type='text/html').
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-12">
+    <h2>&#x8282;&#x70B9;JVM&#x4FE1;&#x606F;</h2>
+    <ol class="breadcrumb">
+      <li><a>&#x8282;&#x70B9;&#x7BA1;&#x7406;</a></li>
+      <li class="active"><b>&#x8282;&#x70B9;JVM&#x4FE1;&#x606F;</b></li>
+    </ol>
+  </div>
+</div>
+<div class="row wrapper wrapper-content animated fadeInRight">
+  <div style="padding-top:0px;" class="panel-body">
+    <div class="input-group">
+      <input type="text" placeholder="请输入节点标识 (可以在节点上下线信息中或者节点管理中找到)" name="identity" value="$!identity" class="form-control input-lg"/>
+      <div class="input-group-btn">
+        <button id="searchBtn" type="button" class="btn btn-lg btn-primary">&nbsp;&#x641C;&nbsp;&nbsp;&#x7D22;&nbsp;</button>
+      </div>
+    </div>
+  </div>
+  <div id="jvmInfo" class="col-lg-12"></div>
+</div>
+<script id="jvm-info-template" type="text/html">
   <div class="ibox border-bottom">
   <div class="ibox-title">
   <h5>JVM信息 <span class="text-navy">{{identity}}</span></h5>
@@ -42,7 +43,8 @@ script#jvm-info-template(type='text/html').
   </table>
   </div>
   </div>
-script.
+</script>
+<script>
   var KYE_LABEL_MAP = {
   NodeType: "节点类型",
   Alive: "是否存活",
@@ -116,3 +118,4 @@ script.
   showJVMInfo('', {});
   }
   });
+</script>

@@ -1,4 +1,4 @@
-extends ../layout
-
-block content
-  include ../templates/nodeManager
+{{ extend('../layout.art') }}
+{{ block  'content'}}
+  {{include '../templates/nodeManager.art'}}
+{{ /block}}
